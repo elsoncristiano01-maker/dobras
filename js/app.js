@@ -439,6 +439,7 @@ function viewAccount() {
     <div class="card"><h2>Nuvem</h2>${!S.cloudConfigured()
       ? `<p class="muted">A nuvem não está configurada: os dados ficam somente neste aparelho. Para sincronizar entre aparelhos, preencha <code>config.js</code> com os dados do seu projeto Supabase (veja o README).</p>`
       : u ? `<p>Conectado como <b>${esc(u.email)}</b>.</p><p class="small muted">${{ syncing: 'Sincronizando…', ok: 'Sincronizado', error: 'Erro: ' + esc(S.syncStatus.error), idle: '' }[S.syncStatus.state]}</p>
+          <p class="small muted">Neste aparelho: ${S.counts().patients} pacientes, ${S.counts().assessments} avaliações, ${S.counts().pending} pendentes de envio.</p>
           <div class="row"><button id="syncNow">Sincronizar agora</button><button class="danger" id="out">Sair</button></div>
           <p class="small muted">Ao sair, os dados são removidos deste aparelho (permanecem na nuvem).</p>`
         : `<form id="lf"><div class="field"><label for="le">E-mail</label><input id="le" type="email" required autocomplete="username"></div>

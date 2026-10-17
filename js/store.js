@@ -58,6 +58,12 @@ export function saveSettings(s) {
   commit();
 }
 
+export const counts = () => ({
+  patients: state.patients.filter((p) => !p.deleted).length,
+  assessments: state.assessments.filter((a) => !a.deleted).length,
+  pending: state.patients.filter((x) => x._dirty).length + state.assessments.filter((x) => x._dirty).length,
+});
+
 export const hasDirty = () => TABLES.some((t) => state[t === 'patients' ? 'patients' : 'assessments'].some((x) => x._dirty));
 
 // ---------- backup ----------
