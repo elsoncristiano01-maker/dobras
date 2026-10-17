@@ -2,3 +2,5 @@ node_modules/
 .claude/
 .DS_Store
 Thumbs.db
+dobras-backup-*.json
+*.backup.json
