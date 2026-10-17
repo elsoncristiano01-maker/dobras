@@ -159,7 +159,8 @@ function scheduleSync() {
 }
 
 let running = false;
-export async function sync() {
+export async function sync({ full = false } = {}) {
+  if (full) state.lastPull = null;
   if (!client || !user || running || !navigator.onLine) return;
   running = true; syncStatus.state = 'syncing'; syncStatus.error = null; emit();
   try {
@@ -204,3 +205,4 @@ export async function sync() {
 }
 
 window.addEventListener('online', () => sync());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') sync(); });

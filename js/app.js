@@ -465,7 +465,7 @@ function viewAccount() {
     toast('Configurações salvas.');
   });
   $('#install')?.addEventListener('click', async () => { installEvt.prompt(); await installEvt.userChoice; installEvt = null; render(); });
-  $('#syncNow')?.addEventListener('click', () => S.sync());
+  $('#syncNow')?.addEventListener('click', () => S.sync({ full: true }));
   $('#out')?.addEventListener('click', async () => {
     if (confirm('Sair? Os dados serão removidos deste aparelho e permanecem na nuvem.')) { await S.signOut(); go('#/pacientes'); }
   });

@@ -1,5 +1,5 @@
 // Service worker: app shell em cache para uso offline. Troque VERSION a cada publicação.
-const VERSION = 'dobras-v4';
+const VERSION = 'dobras-v5';
 const SHELL = [
   './', './index.html', './styles.css', './config.js', './manifest.webmanifest',
   './js/app.js', './js/protocols.js', './js/store.js', './js/charts.js',
