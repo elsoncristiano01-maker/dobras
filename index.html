@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dobras – Avaliação de Gordura Corporal</title>
+<meta name="description" content="Avaliação do percentual de gordura corporal por dobras cutâneas, com os principais protocolos científicos.">
+<meta name="theme-color" content="#0f766e">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dobras">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side" aria-label="Navegação principal">
+    <a class="brand" href="#/pacientes">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor"/><path d="M9 21l14-10M9 21v-4M23 11v4M13 19l-2 3M19 14l-2 3" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      <span>Dobras<small>Composição corporal</small></span>
+    </a>
+    <nav id="nav">
+      <a href="#/pacientes" data-nav="pacientes"><i>👥</i><span>Pacientes</span></a>
+      <a href="#/avaliar" data-nav="avaliar"><i>📏</i><span>Avaliar</span></a>
+      <a href="#/avaliacoes" data-nav="avaliacoes"><i>🗂️</i><span>Histórico</span></a>
+      <a href="#/protocolos" data-nav="protocolos"><i>📚</i><span>Protocolos</span></a>
+      <a href="#/conta" data-nav="conta"><i>⚙️</i><span>Conta</span></a>
+    </nav>
+    <div class="sync" id="syncBadge"></div>
+  </aside>
+  <main id="app" tabindex="-1"></main>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="dlg"></dialog>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
