@@ -1,5 +1,5 @@
 // Service worker: app shell em cache para uso offline. Troque VERSION a cada publicação.
-const VERSION = 'dobras-v2';
+const VERSION = 'dobras-v3';
 const SHELL = [
   './', './index.html', './styles.css', './config.js', './manifest.webmanifest',
   './js/app.js', './js/protocols.js', './js/store.js', './js/charts.js',
@@ -24,19 +24,19 @@ self.addEventListener('fetch', (e) => {
   const sameOrigin = url.origin === self.location.origin;
   if (!sameOrigin && url.hostname !== 'cdn.jsdelivr.net') return; // API do Supabase: sempre rede
 
-  // stale-while-revalidate
+  // rede primeiro (sempre a versão mais nova), cache como reserva offline
   e.respondWith(
     caches.open(VERSION).then(async (cache) => {
-      const cached = await cache.match(req, { ignoreSearch: true });
-      const net = fetch(req).then((res) => {
+      try {
+        const res = await fetch(req, sameOrigin ? { cache: 'no-cache' } : undefined);
         if (res && (res.ok || res.type === 'opaque')) cache.put(req, res.clone());
         return res;
-      }).catch(() => null);
-      if (cached) { e.waitUntil(net); return cached; }
-      const res = await net;
-      if (res) return res;
-      if (req.mode === 'navigate') return cache.match('./index.html');
-      return new Response('Offline', { status: 503 });
+      } catch {
+        const cached = await cache.match(req, { ignoreSearch: true });
+        if (cached) return cached;
+        if (req.mode === 'navigate') return cache.match('./index.html');
+        return new Response('Offline', { status: 503 });
+      }
     }),
   );
 });
